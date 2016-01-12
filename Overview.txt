@@ -1,4 +1,3 @@
-# ARCANE-Spark
 The AnticipatoRy Complex Adaptive Network Extrapolation (ARCANE) library
 is a genetic algorithm system for automatically generating system dynamics
 models that differ in both their embedded parameters and their fundamental
