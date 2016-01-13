@@ -101,11 +101,6 @@ object ARCANEEngine {
         killPopulation(population, broadcastEngine, context),
         broadcastEngine, context)
         
-      // Print the status.
-      println("")
-      println("On step " + step + " of " + steps + " steps.")
-      println("")
-        
     }
     
     // Return the collected results.
