@@ -51,13 +51,15 @@ import org.junit.Assert
 // Define the main object.
 class ARCANEEngineTest {
 
-  // Define a test method.
+	/**  Define a test method.
+   *
+   */
   @Test
   def test() {
  
     // Test the engine.
-    Assert.assertTrue(4.9 <= ARCANEEngine.run("local",
-        "input//matrixscenario_1", 3).reduceLeft(_ max _))
+    Assert.assertTrue(4.9 <= ARCANEEngine.run("local", true,
+        "input//matrixscenario_1", 5).reduceLeft(_ max _))
     
   }
     

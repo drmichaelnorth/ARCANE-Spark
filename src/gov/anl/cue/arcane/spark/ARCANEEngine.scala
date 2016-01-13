@@ -56,15 +56,30 @@ import org.apache.spark.SparkConf
 
 object ARCANEEngine {
   
-  // Define the model runner.
-  def run(runType: String, fileName: String, steps: Int): Array[Double] = {
+	/**  Define the  model runner.
+   *
+   * @param runType the kind of run to complete
+   * @param usePopulationSize use the population size as
+   *        read from the Matrix Engine file in the URL
+   * @param fileName the Matrix Engine file to load
+   * @param steps the number of steps to execute
+   */
+  def run(runType: String, usePopulationSize: Boolean,
+      fileName: String, steps: Int): Array[Double] = {
     
         // Read in the matrix engine.
     val matrixEngine = MatrixEngine.read(fileName)
        
     // Create a Spark configuration.
     val configuration = new SparkConf().setAppName("ARCANEEngine")
-    configuration.setMaster(runType + "[" + matrixEngine.populationSize + "]")
+    
+    // Set the URL.
+    if (usePopulationSize) {
+      configuration.setMaster(runType + "[" +
+          matrixEngine.populationSize + "]")
+    } else {
+      configuration.setMaster(runType)
+    }
     
     // Create a Spark context.
     val context = new SparkContext(configuration)
@@ -98,7 +113,11 @@ object ARCANEEngine {
     
   }
   
-  // Define the population loader.
+	/**  Define the population loader.
+   *
+   * @param partitions the partitions to process
+   * @param broadcastEngine the shared Matrix Engine
+   */
   def loadPopulation(partitions: RDD[Int],
       broadcastEngine: Broadcast[MatrixEngine]):
       RDD[(Double, MatrixModel)] = {
@@ -108,7 +127,11 @@ object ARCANEEngine {
 
   }
   
-  // Define the model loader.
+	/**  Define the model loader.
+   *
+   * @param broadcastEngine the shared Matrix Engine
+   * @param partitionIndex the partition to process
+   */
   def loadModel(broadcastEngine: Broadcast[MatrixEngine])
     (partitionIndex: Int): (Double, MatrixModel) = { 
       
@@ -130,7 +153,11 @@ object ARCANEEngine {
        
   }
   
-  // Define the population killer.
+	/**  Define the population killer.
+   *
+   * @param broadcastEngine the shared Matrix Engine
+   * @param context the shared Spark context
+   */
   def killPopulation(population: RDD[(Double, MatrixModel)],
     broadcastEngine: Broadcast[MatrixEngine], context: SparkContext):
     RDD[(Double, MatrixModel)] = {
@@ -166,7 +193,11 @@ object ARCANEEngine {
       
   }
   
-  // Define the model killer.
+  /**  Define the model killer.
+   *
+   * @param broadcastKillValue the shared killing threshold
+   * @param tuple the item to check
+   */
   def killModel(broadcastKillValue: Broadcast[Double])
     (tuple: (Double, MatrixModel)): Boolean = {
     
@@ -175,7 +206,11 @@ object ARCANEEngine {
     
   }
   
-  // Define the population killer.
+	/**  Define the population filler.
+   *
+   * @param broadcastEngine the shared Matrix Engine
+   * @param context the shared Spark context
+   */
   def fillPopulation(population: RDD[(Double, MatrixModel)],
     broadcastEngine: Broadcast[MatrixEngine], context: SparkContext):
     RDD[(Double, MatrixModel)] = {
@@ -226,7 +261,11 @@ object ARCANEEngine {
  
   }
 
-  // Define the model selector.
+  /**  Define the model selector.
+   *
+   * @param broadcastEngine the shared Matrix Engine
+   * @param tuple the item to filter
+   */
   def selectModel(broadcastEngine: Broadcast[MatrixEngine])
     (tuple: (Double, MatrixModel)): Boolean = {
     
@@ -236,7 +275,11 @@ object ARCANEEngine {
     
   }
   
-  // Define the model shuffler.
+  /**  Define the model shuffler.
+   *
+   * @param broadcastEngine the shared Matrix Engine
+   * @param a the model to shuffle
+   */
   def shuffleModels[A: reflect.ClassTag](broadcastEngine:
       Broadcast[MatrixEngine], a: RDD[A]): RDD[A] = {
     
@@ -249,7 +292,11 @@ object ARCANEEngine {
 
   }
 
-  // Define the model joiner.
+  /**  Define the model joiner.
+   *
+   * @param a the first model
+   * @param b the second model
+   */
   def joinModels[A: reflect.ClassTag, B](a: RDD[A], b: RDD[B]):
     RDD[(A, B)] = {
     
