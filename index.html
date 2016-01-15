@@ -10,7 +10,7 @@
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <title>ARCANE-Spark by drmichaelnorth</title>
+    <title>ARCANE-Spark</title>
   </head>
 
   <body>
@@ -39,8 +39,15 @@
   algorithm system for automatically generating system dynamics models that differ in both
   their embedded parameters and their fundamental equations while maintaining dimensional
   consistency. ARCANE is intended to be used for anticipatory modeling of systems such as complex
-  networks.</p>
-<p>The license can be found <a href="ARCANELicense.pdf">here</a>.
+  networks. The system can be activated using a one line call:</p>
+
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;ARCANEEngine.run("local", true, "input//matrixscenario_1", 5)</p>
+
+  <p>The first parameter is a string for the Apache Spark URL or the kind of run to complete.
+  The second parameter is a boolean for the use the population size as read from the Matrix Engine file in the URL.
+  The third parameter is the path to the Matrix Engine file to load.
+  The fourth parameter is the number of genetic algorithm steps to execute.
+  A reference for the underlying ARCANE API can be found <a href="doc">here</a>. The license can be found <a href="ARCANELicense.pdf">here</a>.
 
 <h3>
 <a id="author" class="anchor" href="#author" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors</h3>
