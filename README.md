@@ -1,4 +1,3 @@
-# ARCANE-Spark
 The AnticipatoRy Complex Adaptive Network Extrapolation (ARCANE) library
 is a genetic algorithm system for automatically generating system dynamics
 models that differ in both their embedded parameters and their fundamental
@@ -8,7 +7,7 @@ is an Apache Spark harness for ARCANE.
 
 The system can be activated using a one line call:
 
-	    ARCANEEngine.run("local", true, "input//matrixscenario_1", 5);
+	    ARCANEEngine.run("local", true, "input//matrixscenario_1", 5)
 
 The parameters are as follows:
 
@@ -17,4 +16,5 @@ The parameters are as follows:
 * The path to the Matrix Engine file to load
 * The number of genetic algorithm steps to execute
 
-A reference for the underlying ARCANE API can be found in the "docs" directory.
+A reference for the underlying ARCANE API can be found
+[here](http://drmichaelnorth.github.io/ARCANE-Spark/docs).

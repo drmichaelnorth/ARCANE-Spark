@@ -15,10 +15,15 @@ public class ARCANEApp {
 	 */
 	public static void main(String[] args) {
 		
-	    // Test the engine.
-	    System.out.println(ARCANEEngine.
-	    		run("local", true, "input//matrixscenario_1", 5));
-		
+		// Print a simple help message.
+		System.out.println(
+				"ARCANE-Spark can be activated using a one line call:");
+		System.out.println(
+				"    ARCANEEngine.run(\"local\", true,"
+				+ "\"input//matrixscenario_1\", 5)");
+		System.out.println(
+				"Please see the README.md file for more information.");
+
 	}
 
 }
