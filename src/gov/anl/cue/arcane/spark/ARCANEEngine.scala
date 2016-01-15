@@ -40,7 +40,7 @@
  ******************************************************************************
  *
  * @author Michael J. North
- * @version 1.1
+ * @version 1.0
  * 
 */
 package gov.anl.cue.arcane.spark
