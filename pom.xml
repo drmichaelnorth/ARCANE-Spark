@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ARCANE-Spark</groupId>
   <artifactId>ARCANE-Spark</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
   <name>ARCANE-Spark</name>
   <description>Apache Spark bindings for ARCANE.</description>
   <build>
@@ -246,5 +246,26 @@
 		<artifactId>spark-core_2.10</artifactId>
 		<version>1.5.2</version>
 	</dependency>
+	<dependency>
+	    <groupId>xerces</groupId>
+    	<artifactId>xercesImpl</artifactId>
+    	<version>2.9.1</version>
+	</dependency>
+	<dependency>
+	    <groupId>xalan</groupId>
+ 	   <artifactId>xalan</artifactId>
+ 	   <version>2.7.1</version>
+	</dependency>
   </dependencies>
-  </project>
+   <url>http://drmichaelnorth.github.io/ARCANE-Spark/</url>
+   <inceptionYear>Michael North</inceptionYear>
+   <organization>
+   	<name>Michael North</name>
+   	<url>http://drmichaelnorth.github.io/ARCANE-Spark/</url>
+   </organization>
+   <scm>
+   	<url>git@github.com:drmichaelnorth/ARCANE-Spark.git</url>
+   	<connection>scm:git:git@github.com:drmichaelnorth/ARCANE-Spark.git</connection>
+   	<developerConnection>scm:git:git@github.com:drmichaelnorth/ARCANE-Spark.git</developerConnection>
+   </scm>
+</project>
