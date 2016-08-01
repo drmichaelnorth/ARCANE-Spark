@@ -67,6 +67,22 @@ object ARCANEEngine {
   def run(runType: String, usePopulationSize: Boolean,
       fileName: String, steps: Int): Array[Double] = {
     
+    // Complete the requested runs.
+    this.runToFindPopulation(runType, usePopulationSize, fileName, steps).keys.collect
+    
+  }
+    
+	/**  Define the  model runner.
+   *
+   * @param runType the kind of run to complete
+   * @param usePopulationSize use the population size as
+   *        read from the Matrix Engine file in the URL
+   * @param fileName the Matrix Engine file to load
+   * @param steps the number of steps to execute
+   */
+  def runToFindPopulation(runType: String, usePopulationSize: Boolean,
+      fileName: String, steps: Int): RDD[(Double, MatrixModel)] = {
+    
         // Read in the matrix engine.
     val matrixEngine = MatrixEngine.read(fileName)
        
@@ -104,7 +120,7 @@ object ARCANEEngine {
     }
     
     // Return the collected results.
-   return (population.keys.collect)
+   return (population)
     
   }
   
