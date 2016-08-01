@@ -43,24 +43,50 @@
  * @version 1.0
  * 
 */
-package gov.anl.cue.arcane.spark
+package gov.anl.cue.arcane.production
+
+import scala.Ordering
 
 import org.junit.Test
-import org.junit.Assert
+
+import gov.anl.cue.arcane.engine.matrix.MatrixEngine
+import gov.anl.cue.arcane.spark.ARCANEEngine
 
 // Define the main object.
-class ARCANEEngineTest {
+class CUEProduction {
 
-	/**  Define a test method.
+  def run(inputFile: String, outputFolder: String, outputCount: Int, steps: Int) {
+
+    // Run the scenario.
+    val population = ARCANEEngine.runToFindPopulation("local", true, inputFile, 5)
+
+    // Collect the results.
+    val tuples = population.takeOrdered(outputCount)(Ordering[Double].on(_._1))
+
+    // Show the results.
+    for (i <- 0 to (outputCount - 1)) {
+      var outputFile = outputFolder + "//MatrixModel_" + (i + 1) + ".xlsx"
+      println("    " + (i + 1) + ": " + tuples(0)._1 + " " +  tuples(i)._2.write(outputFile))
+    }
+
+  }
+
+	/**  Define a production run method.
    *
    */
   @Test
-  def test() {
- 
-    // Test the engine.
-    Assert.assertTrue(4.9 <= ARCANEEngine.run("local", true,
-        "input//matrixscenario_1", 5).reduceLeft(_ max _))
+  def mainRuns() {
     
+    // Request a run.
+    //run("input//test_scenario", "input//test_scenario//output", 10, 60)    
+
+    // Load a template.
+		var matrixEngine = MatrixEngine.importTemplate("input//core_scenario_template.xlsx")
+		matrixEngine.write("input//core_scenario")
+    
+    // Request a run.
+    //run("input//core_scenario", "input//core_scenario//output", 10, 60)  
+
   }
-    
+
 }
