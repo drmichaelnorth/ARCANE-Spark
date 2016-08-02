@@ -53,7 +53,7 @@ import gov.anl.cue.arcane.engine.matrix.MatrixEngine
 import gov.anl.cue.arcane.spark.ARCANEEngine
 
 // Define the main object.
-class CUEProduction {
+class testRun {
 
   def run(inputFile: String, outputFolder: String, outputCount: Int, steps: Int) {
 
@@ -75,17 +75,10 @@ class CUEProduction {
    *
    */
   @Test
-  def mainRuns() {
+  def testMainRun() {
     
     // Request a run.
-    //run("input//test_scenario", "input//test_scenario//output", 10, 60)    
-
-    // Load a template.
-		var matrixEngine = MatrixEngine.importTemplate("input//core_scenario_template.xlsx")
-		matrixEngine.write("input//core_scenario")
-    
-    // Request a run.
-    //run("input//core_scenario", "input//core_scenario//output", 10, 60)  
+    run("input//test_scenario", "input//test_scenario//output", 10, 60)    
 
   }
 
