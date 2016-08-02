@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>drmichaelnorth-Spark</groupId>
   <artifactId>ARCANE-Spark</artifactId>
-  <version>1.0.0</version>
+  <version>1.2.0</version>
   <name>ARCANE-Spark</name>
   <description>Apache Spark bindings for ARCANE.</description>
   <build>
