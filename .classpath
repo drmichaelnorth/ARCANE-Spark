@@ -19,5 +19,7 @@
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/ARCANE-Spark"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+
+	<classpathentry kind="lib" path="lib/arcane-1.2.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
