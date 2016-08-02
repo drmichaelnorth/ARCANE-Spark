@@ -17,4 +17,4 @@ The parameters are as follows:
 * The number of genetic algorithm steps to execute
 
 A reference for the underlying ARCANE API can be found
-[here](http://drmichaelnorth.github.io/ARCANE-Spark/docs).
+[here](http://drmichaelnorth.github.io/ARCANE/docs).
