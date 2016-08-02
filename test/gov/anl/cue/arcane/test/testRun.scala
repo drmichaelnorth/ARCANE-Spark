@@ -43,31 +43,41 @@
  * @version 1.0
  * 
 */
-package gov.anl.cue.arcane.production
+package gov.anl.cue.arcane.test
 
 import scala.Ordering
 
 import org.junit.Test
 
 import gov.anl.cue.arcane.engine.matrix.MatrixEngine
+import gov.anl.cue.arcane.engine.matrix.MatrixModel
 import gov.anl.cue.arcane.spark.ARCANEEngine
 
 // Define the main object.
 class testRun {
 
-  def run(inputFile: String, outputFolder: String, outputCount: Int, steps: Int) {
+  def run(inputFile: String, outputFolder: String, outputCount: Int, steps: Int):
+   Array[(Double, MatrixModel)] = {
 
     // Run the scenario.
     val population = ARCANEEngine.runToFindPopulation("local", true, inputFile, 5)
-
+    
     // Collect the results.
-    val tuples = population.takeOrdered(outputCount)(Ordering[Double].on(_._1))
+    val models = population.takeOrdered(outputCount)(Ordering[Double].on(_._1))
 
-    // Show the results.
+    // Save the results.
     for (i <- 0 to (outputCount - 1)) {
+      
+      // Make the next file name.
       var outputFile = outputFolder + "//MatrixModel_" + (i + 1) + ".xlsx"
-      println("    " + (i + 1) + ": " + tuples(0)._1 + " " +  tuples(i)._2.write(outputFile))
+      
+      // Save the next model.
+      models(i)._2.write(outputFile)
+      
     }
+    
+    // Return the results.
+    return (models)
 
   }
 
@@ -78,8 +88,16 @@ class testRun {
   def testMainRun() {
     
     // Request a run.
-    run("input//test_scenario", "input//test_scenario//output", 10, 60)    
+    var models = run("input//test_scenario", "input//test_scenario//output", 10, 60)    
 
+    // Check the results.
+    for (i <- 0 to (models.length - 1)) {
+      
+      // Check the next model fitness value.
+      assert(models(0)._1 == 3.25)
+      
+    }
+    
   }
 
 }
